@@ -1,5 +1,6 @@
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import { useAnime } from "../hooks/useAnimes";
+import AnimeCard from "./AnimeCard";
 
 function AnimeGrid() {
   const { animes, error } = useAnime();
@@ -7,11 +8,16 @@ function AnimeGrid() {
   return (
     <>
       {error && <Text>{error}</Text>}
-      <ul>
+      <SimpleGrid
+        rowGap={"5"}
+        columnGap={"3.5"}
+        columns={{ sm: 1, md: 2, lg: 3 }}
+        padding={4}
+      >
         {animes.map((anime) => (
-          <li key={anime.id}>{anime.attributes.canonicalTitle}</li>
+          <AnimeCard key={anime.id} anime={anime}></AnimeCard>
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 }

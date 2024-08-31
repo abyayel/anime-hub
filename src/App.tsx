@@ -5,6 +5,7 @@ import AnimeGrid from "./components/AnimeGrid";
 function App() {
   return (
     <Grid
+      templateColumns={{ lg: "auto 150px" }}
       templateAreas={{
         base: `"nav"
     "main"`,
