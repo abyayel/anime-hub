@@ -6,6 +6,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { Anime } from "../hooks/useAnimes";
+import RelatedGenresList from "./RelatedGenreList";
 
 interface Props {
   anime: Anime;
@@ -24,6 +25,7 @@ function AnimeCard({ anime }: Props) {
         <Heading size={{ base: "md", "2xl": "lg" }}>
           {anime.attributes.canonicalTitle}
         </Heading>
+        <RelatedGenresList animeId={anime.id} />
       </CardBody>
     </Card>
   );
