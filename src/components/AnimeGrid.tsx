@@ -3,7 +3,7 @@ import { useAnime } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 
 function AnimeGrid() {
-  const { animes, error } = useAnime();
+  const { data: animes, error } = useAnime();
 
   return (
     <>
