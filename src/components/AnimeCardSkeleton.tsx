@@ -3,7 +3,7 @@ import { Box, Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
 function AnimeCardSkeleton() {
   return (
     <Box>
-      <Card width={280} borderRadius={10} overflow={"hidden"}>
+      <Card borderRadius={10} overflow={"hidden"}>
         <Skeleton height={400}></Skeleton>
         <CardBody>
           <SkeletonText height={70}></SkeletonText>
