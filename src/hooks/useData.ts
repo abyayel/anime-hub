@@ -9,7 +9,7 @@ interface FetchResponse<H> {
 function useData<T>(endpoint: string) {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState(" ");
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,7 +31,7 @@ function useData<T>(endpoint: string) {
     return () => controller.abort();
   }, []);
 
-  return { data, error, loading };
+  return { data, error, isLoading };
 }
 
 export { useData };
