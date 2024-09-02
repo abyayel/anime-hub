@@ -11,7 +11,7 @@ function RelatedGenresList({ animeId }: Props) {
   return (
     <HStack wrap={"wrap"}>
       {genreList.map((genre) => (
-        <Button key={genre.id} size="sm" fontSize="sm">
+        <Button key={genre.id} size={{ base: "sm", "2xl": "lg" }}>
           {genre.attributes.name}
         </Button>
       ))}
