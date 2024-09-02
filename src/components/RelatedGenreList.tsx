@@ -1,4 +1,4 @@
-import { Button, HStack } from "@chakra-ui/react";
+import { Badge, HStack } from "@chakra-ui/react";
 import { useRelatedGeneres } from "../hooks/useRelatedGenres";
 
 interface Props {
@@ -9,11 +9,16 @@ function RelatedGenresList({ animeId }: Props) {
   const { data: genreList } = useRelatedGeneres(animeId);
 
   return (
-    <HStack wrap={"wrap"}>
+    <HStack wrap={"wrap"} paddingTop={2}>
       {genreList.map((genre) => (
-        <Button key={genre.id} size={{ base: "sm", "2xl": "lg" }}>
+        <Badge
+          colorScheme="blue"
+          key={genre.id}
+          fontSize={"11px"}
+          padding={1.5}
+        >
           {genre.attributes.name}
-        </Button>
+        </Badge>
       ))}
     </HStack>
   );
