@@ -1,8 +1,10 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
+import { useCategories } from "./hooks/useCategories";
 
 function App() {
+  const { data } = useCategories();
   return (
     <Grid
       templateColumns={{ lg: "auto 150px" }}
@@ -20,7 +22,11 @@ function App() {
         <AnimeGrid />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside">Aside</GridItem>
+        <GridItem area="aside">
+          {data.map((cat) => (
+            <li>{cat.attributes.title}</li>
+          ))}
+        </GridItem>
       </Show>
     </Grid>
   );
