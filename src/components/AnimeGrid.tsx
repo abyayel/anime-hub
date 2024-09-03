@@ -2,6 +2,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import { useAnime } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
+import AnimeCardContainer from "./AnimeCardContainer";
 
 function AnimeGrid() {
   const { data: animes, error, isLoading } = useAnime();
@@ -17,10 +18,14 @@ function AnimeGrid() {
       >
         {isLoading &&
           skeleton.map((id) => (
-            <AnimeCardSkeleton key={id}></AnimeCardSkeleton>
+            <AnimeCardContainer>
+              <AnimeCardSkeleton key={id} />
+            </AnimeCardContainer>
           ))}
         {animes.map((anime) => (
-          <AnimeCard key={anime.id} anime={anime}></AnimeCard>
+          <AnimeCardContainer>
+            <AnimeCard key={anime.id} anime={anime} />
+          </AnimeCardContainer>
         ))}
       </SimpleGrid>
     </>
