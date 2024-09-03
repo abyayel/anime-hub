@@ -6,7 +6,7 @@ import AnimeCardContainer from "./AnimeCardContainer";
 
 function AnimeGrid() {
   const { data: animes, error, isLoading } = useAnime();
-  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
+  const skeleton = [1, 2, 3, 4, 5, 6];
   return (
     <>
       {error && <Text>{error}</Text>}
