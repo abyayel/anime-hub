@@ -1,31 +1,28 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
-import { useCategories } from "./hooks/useCategories";
+import CategoryList from "./components/CategoryList";
 
 function App() {
-  const { data } = useCategories();
   return (
     <Grid
-      templateColumns={{ lg: "auto 150px" }}
       templateAreas={{
         base: `"nav"
     "main"`,
         lg: `"nav nav"
     "main aside"`,
       }}
+      templateColumns={{ lg: "auto 220px", xl: "auto 280px" }}
     >
-      <GridItem area="nav">
+      <GridItem area="nav" padding={3}>
         <NavBar></NavBar>
       </GridItem>
-      <GridItem area="main">
+      <GridItem area="main" padding={3}>
         <AnimeGrid />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside">
-          {data.map((cat) => (
-            <li>{cat.attributes.title}</li>
-          ))}
+        <GridItem area="aside" paddingTop={3} paddingRight={3}>
+          <CategoryList />
         </GridItem>
       </Show>
     </Grid>

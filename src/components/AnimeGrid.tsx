@@ -13,18 +13,17 @@ function AnimeGrid() {
       <SimpleGrid
         rowGap={"5"}
         columnGap={"3.5"}
-        columns={{ base: 1, sm: 2, md: 3, xl: 4, "2xl": 5 }}
-        padding={4}
+        columns={{ base: 1, sm: 2, md: 3, "2xl": 5 }}
       >
         {isLoading &&
           skeleton.map((id) => (
-            <AnimeCardContainer>
-              <AnimeCardSkeleton key={id} />
+            <AnimeCardContainer key={id}>
+              <AnimeCardSkeleton />
             </AnimeCardContainer>
           ))}
         {animes.map((anime) => (
-          <AnimeCardContainer>
-            <AnimeCard key={anime.id} anime={anime} />
+          <AnimeCardContainer key={anime.id}>
+            <AnimeCard anime={anime} />
           </AnimeCardContainer>
         ))}
       </SimpleGrid>
