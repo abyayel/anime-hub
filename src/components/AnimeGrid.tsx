@@ -4,8 +4,12 @@ import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import AnimeCardContainer from "./AnimeCardContainer";
 
-function AnimeGrid() {
-  const { data: animes, error, isLoading } = useAnime();
+interface Props {
+  selectedCategory: string | null;
+}
+
+function AnimeGrid({ selectedCategory }: Props) {
+  const { data: animes, error, isLoading } = useAnime(selectedCategory);
   const skeleton = [1, 2, 3, 4, 5, 6];
   return (
     <>

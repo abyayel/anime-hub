@@ -2,7 +2,11 @@ import { Button, HStack } from "@chakra-ui/react";
 import { useCategories } from "../hooks/useCategories";
 import CategoryButtonSkeleton from "./CateogryButton";
 
-function CategoryList() {
+interface Props {
+  selectCategory: (slug: string) => void;
+}
+
+function CategoryList({ selectCategory }: Props) {
   const { data: categories, isLoading, error } = useCategories();
   const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -19,7 +23,12 @@ function CategoryList() {
           )
         )}
       {categories.map((cat) => (
-        <Button colorScheme="cyan" size={"sm"} key={cat.id}>
+        <Button
+          onClick={() => selectCategory(cat.attributes.slug)}
+          colorScheme="cyan"
+          size={"sm"}
+          key={cat.id}
+        >
           {cat.attributes.title}
         </Button>
       ))}

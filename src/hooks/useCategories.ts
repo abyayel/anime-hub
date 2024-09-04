@@ -4,13 +4,7 @@ interface Categories {
   id: string;
   attributes: {
     title: string;
-    image: {
-      tiny: string;
-      small: string;
-      medium: string;
-      large: string;
-      original: string;
-    };
+    slug: string;
   };
 }
 

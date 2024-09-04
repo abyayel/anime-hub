@@ -15,8 +15,12 @@ export interface Anime {
   };
 }
 
-function useAnime() {
-  return useData<Anime>("/anime");
+function useAnime(selectedCategory: string | null) {
+  return useData<Anime>(
+    "/anime",
+    { params: { "filter[categories]": selectedCategory } },
+    [selectedCategory]
+  );
 }
 
 export { useAnime };
