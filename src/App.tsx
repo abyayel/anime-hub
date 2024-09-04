@@ -1,8 +1,9 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
 import CategoryList from "./components/CategoryList";
 import { useState } from "react";
+import SortSelector from "./components/SortSelector";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -21,6 +22,9 @@ function App() {
         <NavBar></NavBar>
       </GridItem>
       <GridItem area="main" padding={3}>
+        <HStack marginBottom={2} justifyContent={"flex-end"}>
+          <SortSelector></SortSelector>
+        </HStack>
         <AnimeGrid selectedCategory={selectedCategory} />
       </GridItem>
       <Show above="lg">
