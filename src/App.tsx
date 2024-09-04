@@ -27,6 +27,7 @@ function App() {
         <GridItem area="aside" paddingTop={3} paddingRight={3}>
           <CategoryList
             selectCategory={(categorySlug) => setSelectedCategory(categorySlug)}
+            selectedCategory={selectedCategory}
           />
         </GridItem>
       </Show>
