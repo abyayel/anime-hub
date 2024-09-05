@@ -6,7 +6,7 @@ import { useState } from "react";
 import SortSelector from "./components/SortSelector";
 
 export interface AnimeQuery {
-  category: string;
+  category: string | null;
   order: string;
 }
 
