@@ -1,12 +1,14 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
 import CategoryList from "./components/CategoryList";
 import { useState } from "react";
 import SortSelector from "./components/SortSelector";
+import StatusSelector from "./components/StatusSelector";
 
 export interface AnimeQuery {
   category: string | null;
+  status: string | null;
   order: string;
 }
 
@@ -27,11 +29,17 @@ function App() {
         <NavBar></NavBar>
       </GridItem>
       <GridItem area="main" padding={3}>
-        <HStack marginBottom={2} justifyContent={"flex-end"}>
-          <SortSelector
-            onSelectOrder={(order) => setAnimeQuery({ ...query, order })}
-            selectedOrder={query.order}
-          ></SortSelector>
+        <HStack marginBottom={2}>
+          <StatusSelector
+            onSelectStatus={(status) => setAnimeQuery({ ...query, status })}
+            selectedStatus={query.status}
+          ></StatusSelector>
+          <Box ml={5}>
+            <SortSelector
+              onSelectOrder={(order) => setAnimeQuery({ ...query, order })}
+              selectedOrder={query.order}
+            ></SortSelector>
+          </Box>
         </HStack>
         <AnimeGrid animeQuery={query} />
       </GridItem>

@@ -21,12 +21,7 @@ function SortSelector({ selectedOrder, onSelectOrder }: Props) {
 
   return (
     <Menu>
-      <MenuButton
-        marginRight={120}
-        size={"sm"}
-        as={Button}
-        rightIcon={<BsChevronDown />}
-      >
+      <MenuButton size={"sm"} as={Button} rightIcon={<BsChevronDown />}>
         Order By : {currentOrder?.label || "No order"}
       </MenuButton>
       <MenuList>

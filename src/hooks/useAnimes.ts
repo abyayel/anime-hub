@@ -22,6 +22,7 @@ function useAnime(animeQuery: AnimeQuery) {
     {
       params: {
         "filter[categories]": animeQuery.category,
+        "filter[status]": animeQuery.status,
         sort: animeQuery.order,
       },
     },
