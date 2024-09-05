@@ -17,7 +17,7 @@ function SortSelector({ selectedOrder, onSelectOrder }: Props) {
     { value: "", label: "No Order" },
   ];
 
-  const currentOrder = orders.find((order) => order.value === selectedOrder);
+  const currentOrder = orders.find((order) => selectedOrder === order.value);
 
   return (
     <Menu>

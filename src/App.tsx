@@ -5,9 +5,13 @@ import CategoryList from "./components/CategoryList";
 import { useState } from "react";
 import SortSelector from "./components/SortSelector";
 
+export interface AnimeQuery {
+  category: string;
+  order: string;
+}
+
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedOrder, setSelectedOrder] = useState<string>("");
+  const [query, setAnimeQuery] = useState<AnimeQuery>({} as AnimeQuery);
 
   return (
     <Grid
@@ -25,22 +29,19 @@ function App() {
       <GridItem area="main" padding={3}>
         <HStack marginBottom={2} justifyContent={"flex-end"}>
           <SortSelector
-            onSelectOrder={(attributeName) => setSelectedOrder(attributeName)}
-            selectedOrder={selectedOrder}
+            onSelectOrder={(order) => setAnimeQuery({ ...query, order })}
+            selectedOrder={query.order}
           ></SortSelector>
         </HStack>
-        <AnimeGrid
-          selectedOrder={selectedOrder}
-          selectedCategory={selectedCategory}
-        />
+        <AnimeGrid animeQuery={query} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingTop={3} paddingRight={3}>
           <CategoryList
-            onSelectCategory={(categorySlug) =>
-              setSelectedCategory(categorySlug)
+            onSelectCategory={(category) =>
+              setAnimeQuery({ ...query, category })
             }
-            selectedCategory={selectedCategory}
+            selectedCategory={query.category}
           />
         </GridItem>
       </Show>

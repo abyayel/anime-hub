@@ -4,7 +4,7 @@ import CategoryButtonSkeleton from "./CateogryButton";
 
 interface Props {
   onSelectCategory: (slug: string) => void;
-  selectedCategory: string | null;
+  selectedCategory: string;
 }
 
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {

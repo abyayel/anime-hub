@@ -3,21 +3,16 @@ import { useAnime } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import AnimeCardContainer from "./AnimeCardContainer";
+import { AnimeQuery } from "../App";
 
 interface Props {
-  selectedCategory: string | null;
-  selectedOrder: string;
+  animeQuery: AnimeQuery;
 }
 
-function AnimeGrid({ selectedCategory, selectedOrder }: Props) {
-  const {
-    data: animes,
-    error,
-    isLoading,
-  } = useAnime(selectedCategory, selectedOrder);
+function AnimeGrid({ animeQuery }: Props) {
+  const { data: animes, error, isLoading } = useAnime(animeQuery);
   const skeleton = [1, 2, 3, 4, 5, 6];
 
-  // console.log(animes);
   return (
     <>
       {error && <Text>{error}</Text>}

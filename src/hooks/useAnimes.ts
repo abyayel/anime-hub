@@ -1,3 +1,4 @@
+import { AnimeQuery } from "../App";
 import { useData } from "./useData";
 
 export interface Anime {
@@ -15,11 +16,16 @@ export interface Anime {
   };
 }
 
-function useAnime(selectedCategory: string | null, selectedOrder: string) {
+function useAnime(animeQuery: AnimeQuery) {
   return useData<Anime>(
     "/anime",
-    { params: { "filter[categories]": selectedCategory, sort: selectedOrder } },
-    [selectedCategory, selectedOrder]
+    {
+      params: {
+        "filter[categories]": animeQuery.category,
+        sort: animeQuery.order,
+      },
+    },
+    [animeQuery]
   );
 }
 
