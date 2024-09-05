@@ -15,11 +15,11 @@ export interface Anime {
   };
 }
 
-function useAnime(selectedCategory: string | null) {
+function useAnime(selectedCategory: string | null, selectedOrder: string) {
   return useData<Anime>(
     "/anime",
-    { params: { "filter[categories]": selectedCategory } },
-    [selectedCategory]
+    { params: { "filter[categories]": selectedCategory, sort: selectedOrder } },
+    [selectedCategory, selectedOrder]
   );
 }
 

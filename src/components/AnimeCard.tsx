@@ -9,7 +9,7 @@ interface Props {
 function AnimeCard({ anime }: Props) {
   return (
     <Card>
-      <Image src={anime.attributes.posterImage.large} />
+      <Image src={anime.attributes.posterImage?.large} />
       <CardBody key={anime.id}>
         <Heading isTruncated size={{ base: "sm", sm: "md", "2xl": "lg" }}>
           {anime.attributes.canonicalTitle}

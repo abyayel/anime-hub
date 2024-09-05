@@ -6,11 +6,18 @@ import AnimeCardContainer from "./AnimeCardContainer";
 
 interface Props {
   selectedCategory: string | null;
+  selectedOrder: string;
 }
 
-function AnimeGrid({ selectedCategory }: Props) {
-  const { data: animes, error, isLoading } = useAnime(selectedCategory);
+function AnimeGrid({ selectedCategory, selectedOrder }: Props) {
+  const {
+    data: animes,
+    error,
+    isLoading,
+  } = useAnime(selectedCategory, selectedOrder);
   const skeleton = [1, 2, 3, 4, 5, 6];
+
+  // console.log(animes);
   return (
     <>
       {error && <Text>{error}</Text>}

@@ -3,11 +3,11 @@ import { useCategories } from "../hooks/useCategories";
 import CategoryButtonSkeleton from "./CateogryButton";
 
 interface Props {
-  selectCategory: (slug: string) => void;
+  onSelectCategory: (slug: string) => void;
   selectedCategory: string | null;
 }
 
-function CategoryList({ selectCategory, selectedCategory }: Props) {
+function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   const { data: categories, isLoading, error } = useCategories();
   const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -25,7 +25,7 @@ function CategoryList({ selectCategory, selectedCategory }: Props) {
         )}
       {categories.map((cat) => (
         <Button
-          onClick={() => selectCategory(cat.attributes.slug)}
+          onClick={() => onSelectCategory(cat.attributes.slug)}
           colorScheme={
             selectedCategory === cat.attributes.slug ? "blue" : "cyan"
           }

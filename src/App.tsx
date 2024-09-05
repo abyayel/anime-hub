@@ -7,6 +7,7 @@ import SortSelector from "./components/SortSelector";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<string>("");
 
   return (
     <Grid
@@ -23,14 +24,22 @@ function App() {
       </GridItem>
       <GridItem area="main" padding={3}>
         <HStack marginBottom={2} justifyContent={"flex-end"}>
-          <SortSelector></SortSelector>
+          <SortSelector
+            onSelectOrder={(attributeName) => setSelectedOrder(attributeName)}
+            selectedOrder={selectedOrder}
+          ></SortSelector>
         </HStack>
-        <AnimeGrid selectedCategory={selectedCategory} />
+        <AnimeGrid
+          selectedOrder={selectedOrder}
+          selectedCategory={selectedCategory}
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingTop={3} paddingRight={3}>
           <CategoryList
-            selectCategory={(categorySlug) => setSelectedCategory(categorySlug)}
+            onSelectCategory={(categorySlug) =>
+              setSelectedCategory(categorySlug)
+            }
             selectedCategory={selectedCategory}
           />
         </GridItem>
