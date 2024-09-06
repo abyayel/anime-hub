@@ -13,6 +13,8 @@ function AnimeGrid({ animeQuery }: Props) {
   const skeleton = [1, 2, 3, 4, 5, 6];
   const cardBorderRadius = 10;
 
+  if (error) <Text>{error}</Text>;
+
   if (!isLoading && animes.length === 0)
     return (
       <Heading color="red" marginTop={10}>
@@ -22,7 +24,6 @@ function AnimeGrid({ animeQuery }: Props) {
 
   return (
     <>
-      {error && <Text>{error}</Text>}
       <SimpleGrid
         rowGap={"5"}
         columnGap={"3.5"}
