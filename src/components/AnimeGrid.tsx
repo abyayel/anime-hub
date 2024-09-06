@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { useAnime } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
@@ -12,6 +12,13 @@ interface Props {
 function AnimeGrid({ animeQuery }: Props) {
   const { data: animes, error, isLoading } = useAnime(animeQuery);
   const skeleton = [1, 2, 3, 4, 5, 6];
+
+if (!isLoading && animes.length === 0)
+    return (
+      <Heading color="red" marginTop={10}>
+        No animes found
+      </Heading>
+    );
 
   return (
     <>
