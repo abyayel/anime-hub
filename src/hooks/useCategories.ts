@@ -9,7 +9,9 @@ interface Categories {
 }
 
 function useCategories() {
-  return useData<Categories>("/categories");
+  return useData<Categories>("/categories", {
+    params: { sort: "-totalMediaCount" },
+  });
 }
 
 export { useCategories };
