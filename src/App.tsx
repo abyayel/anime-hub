@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
 import CategoryList from "./components/CategoryList";
@@ -15,6 +15,7 @@ export interface AnimeQuery {
 
 function App() {
   const [query, setAnimeQuery] = useState<AnimeQuery>({} as AnimeQuery);
+  const headingBottomGap = 2;
 
   return (
     <Grid
@@ -32,22 +33,26 @@ function App() {
         ></NavBar>
       </GridItem>
       <GridItem area="main" padding={3}>
-        <HStack marginBottom={2}>
-          <StatusSelector
-            onSelectStatus={(status) => setAnimeQuery({ ...query, status })}
-            selectedStatus={query.status}
-          ></StatusSelector>
-          <Box ml={5}>
+        <HStack justifyContent={"space-between"}>
+          <Heading marginBottom={headingBottomGap} as={"h1"}>
+            Animes
+          </Heading>
+          <HStack flexWrap={"nowrap"} mr={"150px"} gap={5}>
+            <StatusSelector
+              onSelectStatus={(status) => setAnimeQuery({ ...query, status })}
+              selectedStatus={query.status}
+            ></StatusSelector>
             <SortSelector
               onSelectOrder={(order) => setAnimeQuery({ ...query, order })}
               selectedOrder={query.order}
             ></SortSelector>
-          </Box>
+          </HStack>
         </HStack>
         <AnimeGrid animeQuery={query} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingTop={3} paddingRight={3}>
+          <Heading marginBottom={headingBottomGap}>Categories</Heading>
           <CategoryList
             onSelectCategory={(category) =>
               setAnimeQuery({ ...query, category })
