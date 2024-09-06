@@ -1,8 +1,12 @@
 import { Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
 
-function AnimeCardSkeleton() {
+interface Props {
+  borderRadius: string | number;
+}
+
+function AnimeCardSkeleton({ borderRadius }: Props) {
   return (
-    <Card>
+    <Card borderRadius={borderRadius} overflow="hidden">
       <Skeleton height={400}></Skeleton>
       <CardBody>
         <SkeletonText height={70}></SkeletonText>

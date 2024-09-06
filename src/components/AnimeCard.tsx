@@ -4,11 +4,12 @@ import RelatedGenresList from "./RelatedGenreList";
 
 interface Props {
   anime: Anime;
+  borderRadius: string | number;
 }
 
-function AnimeCard({ anime }: Props) {
+function AnimeCard({ anime, borderRadius }: Props) {
   return (
-    <Card>
+    <Card borderRadius={borderRadius} overflow="hidden">
       <Image src={anime.attributes.posterImage?.large} />
       <CardBody key={anime.id}>
         <Heading isTruncated size={{ base: "sm", sm: "md", "2xl": "lg" }}>
