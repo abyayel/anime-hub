@@ -10,6 +10,7 @@ export interface AnimeQuery {
   category: string | null;
   status: string | null;
   order: string;
+  searchText: string;
 }
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
       templateColumns={{ lg: "auto 220px", xl: "auto 280px" }}
     >
       <GridItem area="nav" padding={3}>
-        <NavBar></NavBar>
+        <NavBar
+          onSearch={(searchText) => setAnimeQuery({ ...query, searchText })}
+        ></NavBar>
       </GridItem>
       <GridItem area="main" padding={3}>
         <HStack marginBottom={2}>
