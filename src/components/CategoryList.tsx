@@ -1,6 +1,6 @@
 import { Button, HStack, useBreakpointValue } from "@chakra-ui/react";
 import { useCategories } from "../hooks/useCategories";
-import CategoryButtonSkeleton from "./CateogryButton";
+import CategoryButtonSkeleton from "./CateogryButtonSkeleton";
 
 interface Props {
   onSelectCategory: (slug: string | null) => void;
@@ -9,9 +9,11 @@ interface Props {
 
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   const { data: categories, isLoading, error } = useCategories();
-  const skeleton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const narrowButtonWidth = useBreakpointValue({ lg: 45, xl: 50 });
-  const wideButtonWidth = useBreakpointValue({ lg: 70, xl: 100 });
+  const skeleton = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  ];
+  const narrowButtonWidth = useBreakpointValue({ lg: "70px", xl: "80px" });
+  const wideButtonWidth = useBreakpointValue({ lg: "86px", xl: "110px" });
 
   if (error) return null;
 

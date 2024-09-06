@@ -25,7 +25,7 @@ function App() {
         lg: `"nav nav"
     "main aside"`,
       }}
-      templateColumns={{ lg: "auto 220px", xl: "auto 280px" }}
+      templateColumns={{ lg: "auto 290px", xl: "auto 330px" }}
     >
       <GridItem area="nav" padding={3}>
         <NavBar

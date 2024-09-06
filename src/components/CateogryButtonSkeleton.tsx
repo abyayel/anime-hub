@@ -1,7 +1,7 @@
 import { Button, Skeleton } from "@chakra-ui/react";
 
 interface Props {
-  width?: number;
+  width?: number | string;
 }
 
 function CategoryButtonSkeleton({ width }: Props) {
