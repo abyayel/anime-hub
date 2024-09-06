@@ -6,6 +6,7 @@ export interface Anime {
   attributes: {
     canonicalTitle: string;
     averageRating: string;
+    ageRating: string;
     posterImage: {
       tiny: string;
       small: string;

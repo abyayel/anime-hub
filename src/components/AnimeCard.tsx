@@ -1,6 +1,7 @@
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Card, CardBody, CardFooter, Heading, Image } from "@chakra-ui/react";
 import { Anime } from "../hooks/useAnimes";
 import RelatedGenresList from "./RelatedGenreList";
+import ExtraInfo from "./ExtraInfo";
 
 interface Props {
   anime: Anime;
@@ -17,6 +18,12 @@ function AnimeCard({ anime, borderRadius }: Props) {
         </Heading>
         <RelatedGenresList animeId={anime.id} />
       </CardBody>
+      <CardFooter height="10">
+        <ExtraInfo
+          averageRating={anime.attributes.averageRating}
+          ageRating={anime.attributes.ageRating}
+        ></ExtraInfo>
+      </CardFooter>
     </Card>
   );
 }
