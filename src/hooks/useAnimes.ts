@@ -21,10 +21,10 @@ function useAnime(animeQuery: AnimeQuery) {
     "/anime",
     {
       params: {
-        "filter[categories]": animeQuery.category,
-        "filter[status]": animeQuery.status,
+        "filter[categories]": animeQuery?.category,
+        "filter[status]": animeQuery?.status,
         "filter[text]": animeQuery.searchText,
-        sort: animeQuery.order,
+        sort: animeQuery?.order,
       },
     },
     [animeQuery]

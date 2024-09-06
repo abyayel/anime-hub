@@ -9,7 +9,7 @@ import StatusSelector from "./components/StatusSelector";
 export interface AnimeQuery {
   category: string | null;
   status: string | null;
-  order: string;
+  order: string | null;
   searchText: string;
 }
 
