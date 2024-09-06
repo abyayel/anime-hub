@@ -27,11 +27,12 @@ function AnimeGrid({ animeQuery }: Props) {
               <AnimeCardSkeleton />
             </AnimeCardContainer>
           ))}
-        {animes.map((anime) => (
-          <AnimeCardContainer key={anime.id}>
-            <AnimeCard anime={anime} />
-          </AnimeCardContainer>
-        ))}
+        {!isLoading &&
+          animes.map((anime) => (
+            <AnimeCardContainer key={anime.id}>
+              <AnimeCard anime={anime} />
+            </AnimeCardContainer>
+          ))}
       </SimpleGrid>
     </>
   );
