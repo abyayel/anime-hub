@@ -1,6 +1,6 @@
 import { useData } from "./useData";
 
-interface Categories {
+export interface Category {
   id: string;
   attributes: {
     title: string;
@@ -13,14 +13,14 @@ function useCategories() {
     data: data1,
     error: error1,
     isLoading: isLoading1,
-  } = useData<Categories>("/categories", {
+  } = useData<Category>("/categories", {
     params: { sort: "-totalMediaCount", "page[limit]": 20, "page[offset]": 0 },
   });
   const {
     data: data2,
     error: error2,
     isLoading: isLoading2,
-  } = useData<Categories>("/categories", {
+  } = useData<Category>("/categories", {
     params: { sort: "-totalMediaCount", "page[limit]": 20, "page[offset]": 20 },
   });
 
