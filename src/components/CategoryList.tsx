@@ -9,8 +9,16 @@ interface Props {
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   const { data: categories, isLoading, error } = useCategories();
   const skeleton = Array.from({ length: 30 });
-  const narrowButtonWidth = useBreakpointValue({ lg: "60px", xl: "80px" });
-  const wideButtonWidth = useBreakpointValue({ lg: "80px", xl: "110px" });
+  const narrowButtonWidth = useBreakpointValue({
+    lg: "60px",
+    xl: "80px",
+    "2xl": "60px",
+  });
+  const wideButtonWidth = useBreakpointValue({
+    lg: "80px",
+    xl: "85px",
+    "2xl": "105px",
+  });
 
   if (error) return null;
 
@@ -20,7 +28,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
         skeleton.map((_, id) => (
           <Skeleton
             key={id}
-            height={{ base: "24px", xl: "32px" }}
+            height={{ base: "24px", xl: "32px", "2xl": "40px" }}
             width={id % 2 === 0 ? narrowButtonWidth : wideButtonWidth}
             borderRadius={5}
           ></Skeleton>
