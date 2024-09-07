@@ -18,6 +18,18 @@ export interface Anime {
 }
 
 function useAnime(animeQuery: AnimeQuery) {
+  if (animeQuery.searchText === "")
+    return useData<Anime>(
+      "/anime",
+      {
+        params: {
+          "filter[categories]": animeQuery?.category,
+          "filter[status]": animeQuery?.status,
+          sort: animeQuery?.order,
+        },
+      },
+      [animeQuery]
+    );
   return useData<Anime>(
     "/anime",
     {
