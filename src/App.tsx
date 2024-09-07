@@ -10,7 +10,7 @@ export interface AnimeQuery {
   category: string | null;
   status: string | null;
   order: string | null;
-  searchText: string;
+  searchText: string | null;
 }
 
 function App() {
