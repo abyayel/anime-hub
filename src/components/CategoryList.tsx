@@ -16,7 +16,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   });
   const wideButtonWidth = useBreakpointValue({
     lg: "80px",
-    xl: "85px",
+    xl: "110px",
     "2xl": "105px",
   });
 
