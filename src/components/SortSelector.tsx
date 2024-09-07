@@ -13,9 +13,9 @@ function SortSelector({
   onSelectOrder,
 }: Props) {
   const orders = [
-    { value: "-startDate", label: "Newest Release" },
     { value: "popularityRank", label: "Most Popular" },
     { value: "-averageRating", label: "Average Rating" },
+    { value: "-startDate", label: "Newest Release" },
     { value: "-createdAt", label: "Date Added" },
   ];
 
