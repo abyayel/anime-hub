@@ -37,10 +37,11 @@ function App() {
         ></NavBar>
       </GridItem>
       <GridItem area="main" padding={3}>
-        <HStack justifyContent={"space-between"}>
-          <Heading marginBottom={headingBottomGap} as={"h1"}>
-            Animes
-          </Heading>
+        <HStack
+          marginBottom={headingBottomGap}
+          justifyContent={"space-between"}
+        >
+          <Heading as={"h1"}>Animes</Heading>
           <HStack flexWrap={"nowrap"} mr={"150px"} gap={5}>
             <StatusSelector
               onSelectStatus={(status) => setAnimeQuery({ ...query, status })}
