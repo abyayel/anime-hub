@@ -7,10 +7,11 @@ interface Props {
 
 function RelatedGenresList({ animeId }: Props) {
   const { data: genreList } = useRelatedGeneres(animeId);
+  const limitedData = genreList.slice(0, 3);
 
   return (
     <HStack wrap={"wrap"} paddingTop={2}>
-      {genreList.map((genre) => (
+      {limitedData.map((genre) => (
         <Badge
           colorScheme="blue"
           key={genre.id}
