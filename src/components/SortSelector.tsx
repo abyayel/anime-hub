@@ -4,9 +4,14 @@ import { BsChevronDown } from "react-icons/bs";
 interface Props {
   onSelectOrder: (attributeName: string | null) => void;
   selectedOrder: string | null;
+  selectedCategory: string | null;
 }
 
-function SortSelector({ selectedOrder, onSelectOrder }: Props) {
+function SortSelector({
+  selectedOrder,
+  selectedCategory,
+  onSelectOrder,
+}: Props) {
   const orders = [
     { value: "-startDate", label: "Newest Release" },
     { value: "popularityRank", label: "Most Popular" },
@@ -19,7 +24,9 @@ function SortSelector({ selectedOrder, onSelectOrder }: Props) {
   return (
     <Menu>
       <MenuButton size={"sm"} as={Button} rightIcon={<BsChevronDown />}>
-        {currentOrder?.label || "Order"}
+        {selectedCategory == null
+          ? currentOrder?.label || "Order"
+          : currentOrder?.label || "Most Popular"}
       </MenuButton>
       <MenuList>
         {orders.map((order) => (
@@ -31,9 +38,11 @@ function SortSelector({ selectedOrder, onSelectOrder }: Props) {
             {order.label}
           </MenuItem>
         ))}
-        <MenuItem value="no order" onClick={() => onSelectOrder(null)}>
-          No order
-        </MenuItem>
+        {selectedCategory == null && (
+          <MenuItem value="no order" onClick={() => onSelectOrder(null)}>
+            No order
+          </MenuItem>
+        )}
       </MenuList>
     </Menu>
   );

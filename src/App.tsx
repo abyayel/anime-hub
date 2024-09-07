@@ -45,6 +45,7 @@ function App() {
             <SortSelector
               onSelectOrder={(order) => setAnimeQuery({ ...query, order })}
               selectedOrder={query.order}
+              selectedCategory={query.category}
             ></SortSelector>
           </HStack>
         </HStack>
