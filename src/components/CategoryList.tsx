@@ -9,17 +9,18 @@ interface Props {
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   const { data: categories, isLoading, error } = useCategories();
   const skeleton = Array.from({ length: 30 });
-  const narrowButtonWidth = useBreakpointValue({ lg: "70px", xl: "80px" });
-  const wideButtonWidth = useBreakpointValue({ lg: "86px", xl: "110px" });
+  const narrowButtonWidth = useBreakpointValue({ lg: "60px", xl: "80px" });
+  const wideButtonWidth = useBreakpointValue({ lg: "80px", xl: "110px" });
 
   if (error) return null;
 
   return (
-    <HStack flexWrap={"wrap"}>
+    <HStack gap={{ base: 1.5, xl: 2 }} flexWrap={"wrap"}>
       {isLoading &&
         skeleton.map((_, id) => (
           <Skeleton
-            height={"32px"}
+            key={id}
+            height={{ base: "24px", xl: "32px" }}
             width={id % 2 === 0 ? narrowButtonWidth : wideButtonWidth}
             borderRadius={5}
           ></Skeleton>
@@ -28,7 +29,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
         <Button
           onClick={() => onSelectCategory(null)}
           colorScheme={selectedCategory ? "purple" : "red"}
-          size={"sm"}
+          size={{ base: "xs", xl: "sm", "2xl": "md" }}
         >
           All
         </Button>
@@ -39,7 +40,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
           colorScheme={
             selectedCategory === cat.attributes.slug ? "blue" : "cyan"
           }
-          size={"sm"}
+          size={{ base: "xs", xl: "sm", "2xl": "md" }}
           key={cat.id}
         >
           {cat.attributes.title}

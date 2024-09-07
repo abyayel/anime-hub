@@ -10,12 +10,12 @@ function RelatedGenresList({ animeId }: Props) {
   const limitedData = genreList.slice(0, 3);
 
   return (
-    <HStack wrap={"wrap"} paddingTop={2}>
+    <HStack wrap={"wrap"} paddingTop={1}>
       {limitedData.map((genre) => (
         <Badge
           colorScheme="blue"
           key={genre.id}
-          fontSize={"11px"}
+          fontSize={{ base: "10px", "2xl": "15px" }}
           padding={1.5}
         >
           {genre.attributes.name}

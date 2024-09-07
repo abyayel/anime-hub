@@ -10,15 +10,24 @@ interface Props {
 
 function AnimeCard({ anime, borderRadius }: Props) {
   return (
-    <Card borderRadius={borderRadius} overflow="hidden">
-      <Image src={anime.attributes.posterImage?.large} />
-      <CardBody key={anime.id}>
+    <Card
+      maxW={{ base: " 317px", md: "352", xl: "303px", "2xl": "507px" }}
+      borderRadius={borderRadius}
+      overflow="hidden"
+      width="100%"
+    >
+      <Image
+        // maxH={{ base: "450px", md: "500", xl: "430px", "2xl": "720px" }}
+        maxW={{ base: " 317px", md: "352", xl: "303px", "2xl": "507px" }}
+        src={anime.attributes.posterImage?.large}
+      />
+      <CardBody paddingTop={3} key={anime.id}>
         <Heading isTruncated size={{ base: "sm", sm: "md", "2xl": "lg" }}>
           {anime.attributes.canonicalTitle}
         </Heading>
         <RelatedGenresList animeId={anime.id} />
       </CardBody>
-      <CardFooter height="10">
+      <CardFooter paddingTop={0} paddingBottom={2}>
         <ExtraInfo
           averageRating={anime.attributes.averageRating}
           ageRating={anime.attributes.ageRating}

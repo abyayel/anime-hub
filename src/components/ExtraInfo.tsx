@@ -11,7 +11,7 @@ function ExtraInfo({ averageRating, ageRating }: Props) {
     <HStack width={"100%"} justifyContent={"space-between"}>
       <Badge
         paddingX={1.5}
-        fontSize={"14px"}
+        fontSize={{ base: "12px", "2xl": "20px" }}
         variant={"solid"}
         borderRadius={"4px"}
       >
@@ -19,7 +19,7 @@ function ExtraInfo({ averageRating, ageRating }: Props) {
       </Badge>
       <Badge
         paddingX={1.5}
-        fontSize={"14px"}
+        fontSize={{ base: "12px", "2xl": "20px" }}
         borderRadius={"4px"}
         colorScheme={colorScheme}
       >

@@ -15,7 +15,7 @@ export interface AnimeQuery {
 
 function App() {
   const [query, setAnimeQuery] = useState<AnimeQuery>({} as AnimeQuery);
-  const headingBottomGap = 2;
+  const headingBottomGap = 3;
 
   return (
     <Grid
@@ -25,7 +25,11 @@ function App() {
         lg: `"nav nav"
     "main aside"`,
       }}
-      templateColumns={{ lg: "auto 290px", xl: "auto 330px" }}
+      templateColumns={{
+        lg: "auto 245px",
+        xl: "auto 400px",
+        "2xl": "auto 480px",
+      }}
     >
       <GridItem area="nav" padding={3}>
         <NavBar

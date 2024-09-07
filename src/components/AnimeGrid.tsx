@@ -27,7 +27,8 @@ function AnimeGrid({ animeQuery }: Props) {
       <SimpleGrid
         rowGap={"5"}
         columnGap={"3.5"}
-        columns={{ base: 1, sm: 2, md: 3, "2xl": 5 }}
+        columns={{ base: 1, sm: 2, md: 3, "2xl": 4 }}
+        justifyItems={"center"}
       >
         {isLoading &&
           skeleton.map((id) => (
