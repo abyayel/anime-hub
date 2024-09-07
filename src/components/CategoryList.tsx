@@ -1,6 +1,5 @@
-import { Button, HStack, useBreakpointValue } from "@chakra-ui/react";
+import { Button, HStack, Skeleton, useBreakpointValue } from "@chakra-ui/react";
 import { useCategories } from "../hooks/useCategories";
-import CategoryButtonSkeleton from "./CateogryButtonSkeleton";
 
 interface Props {
   onSelectCategory: (slug: string | null) => void;
@@ -9,9 +8,7 @@ interface Props {
 
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   const { data: categories, isLoading, error } = useCategories();
-  const skeleton = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+  const skeleton = Array.from({ length: 30 });
   const narrowButtonWidth = useBreakpointValue({ lg: "70px", xl: "80px" });
   const wideButtonWidth = useBreakpointValue({ lg: "86px", xl: "110px" });
 
@@ -20,13 +17,13 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   return (
     <HStack flexWrap={"wrap"}>
       {isLoading &&
-        skeleton.map((id) =>
-          id % 2 === 0 ? (
-            <CategoryButtonSkeleton width={narrowButtonWidth} key={id} />
-          ) : (
-            <CategoryButtonSkeleton width={wideButtonWidth} key={id} />
-          )
-        )}
+        skeleton.map((_, id) => (
+          <Skeleton
+            height={"32px"}
+            width={id % 2 === 0 ? narrowButtonWidth : wideButtonWidth}
+            borderRadius={5}
+          ></Skeleton>
+        ))}
       {!isLoading && (
         <Button
           onClick={() => onSelectCategory(null)}
