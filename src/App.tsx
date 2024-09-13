@@ -41,9 +41,10 @@ function App() {
           marginBottom={headingBottomGap}
           justifyContent={"space-between"}
           flexWrap={"wrap"}
+          width="auto"
         >
           <Heading as={"h1"}>Animes</Heading>
-          <HStack alignSelf={"flex-end"} flexWrap={"wrap"} gap={5}>
+          <HStack flexWrap={"wrap"} gap={5}>
             <StatusSelector
               onSelectStatus={(status) => setAnimeQuery({ ...query, status })}
               selectedStatus={query.status}
