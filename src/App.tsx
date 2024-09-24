@@ -5,16 +5,12 @@ import CategoryList from "./components/CategoryList";
 import { useState } from "react";
 import SortSelector from "./components/SortSelector";
 import StatusSelector from "./components/StatusSelector";
-
-export interface AnimeQuery {
-  category: string | null;
-  status: string | null;
-  order: string | null;
-  searchText: string | null;
-}
+import { AnimeQuery } from "./hooks/useAnimes";
 
 function App() {
-  const [query, setAnimeQuery] = useState<AnimeQuery>({} as AnimeQuery);
+  const [query, setAnimeQuery] = useState<AnimeQuery>({
+    category: null,
+  } as AnimeQuery);
   const headingBottomGap = 3;
 
   return (

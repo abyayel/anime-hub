@@ -7,7 +7,7 @@ interface Props {
 
 function RelatedCategoryList({ animeId }: Props) {
   const { data: categoryList } = useRelatedCategories(animeId);
-  const limitedData = categoryList?.slice(0, 3);
+  const limitedData = categoryList?.data.slice(0, 3);
 
   return (
     <HStack wrap={"wrap"} paddingTop={1}>

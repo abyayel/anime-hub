@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClient, { FetchResponse } from "../services/api-client";
+import { APIClient } from "../services/api-client";
+
+const apiClient = new APIClient<Category>("/categories");
 
 export interface Category {
   id: string;
@@ -13,11 +15,9 @@ function useCategories() {
   return useQuery({
     queryKey: ["category"],
     queryFn: () =>
-      apiClient
-        .get<FetchResponse<Category>>("/categories", {
-          params: { sort: "-totalMediaCount", "page[limit]": 20 },
-        })
-        .then((response) => response.data.data),
+      apiClient.getAll({
+        params: { sort: "-totalMediaCount", "page[limit]": 20 },
+      }),
     staleTime: 24 * 60 * 60 * 1000,
   });
 }

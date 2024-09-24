@@ -2,7 +2,7 @@ import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { useAnime } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
-import { AnimeQuery } from "../App";
+import { AnimeQuery } from "../hooks/useAnimes";
 
 interface Props {
   animeQuery: AnimeQuery;
@@ -15,7 +15,7 @@ function AnimeGrid({ animeQuery }: Props) {
 
   if (error) <Text>{error.message}</Text>;
 
-  if (!isLoading && animes?.length === 0)
+  if (!isLoading && animes?.meta.count === 0)
     return (
       <Heading color="red" marginTop={10}>
         No animes found
@@ -35,7 +35,7 @@ function AnimeGrid({ animeQuery }: Props) {
             <AnimeCardSkeleton borderRadius={cardBorderRadius} key={id} />
           ))}
         {!isLoading &&
-          animes?.map((anime) => (
+          animes?.data.map((anime) => (
             <AnimeCard
               anime={anime}
               borderRadius={cardBorderRadius}

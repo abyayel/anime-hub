@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClient, { FetchResponse } from "../services/api-client";
+import { APIClient } from "../services/api-client";
 import { Category } from "./useCategories";
 
 function useRelatedCategories(animeId: string) {
+  const apiClient = new APIClient<Category>(
+    "/anime/" + animeId + "/categories"
+  );
+
   return useQuery({
     queryKey: [animeId],
     queryFn: () =>
-      apiClient
-        .get<FetchResponse<Category>>("/anime/" + animeId + "/categories", {
-          params: { sort: "-totalMediaCount" },
-        })
-        .then((response) => response.data.data),
+      apiClient.getAll({
+        params: { sort: "-totalMediaCount" },
+      }),
   });
 }
 
