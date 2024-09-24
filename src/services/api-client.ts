@@ -10,16 +10,7 @@ const apiClient = axios.create({
 interface FetchResponse<T> {
   data: T[];
   meta: { count: number };
-}
-
-export interface QueryParams {
-  params: {
-    "filter[categories]"?: string | null;
-    "filter[status]"?: string | null;
-    "filter[text]"?: string | null;
-    sort?: string | null;
-    "page[limit]"?: number | null;
-  };
+  links: { next: string | undefined };
 }
 
 class APIClient<T> {
