@@ -13,9 +13,9 @@ function AnimeGrid({ animeQuery }: Props) {
   const skeleton = [1, 2, 3, 4, 5, 6];
   const cardBorderRadius = 10;
 
-  if (error) <Text>{error}</Text>;
+  if (error) <Text>{error.message}</Text>;
 
-  if (!isLoading && animes.length === 0)
+  if (!isLoading && animes?.length === 0)
     return (
       <Heading color="red" marginTop={10}>
         No animes found
@@ -35,7 +35,7 @@ function AnimeGrid({ animeQuery }: Props) {
             <AnimeCardSkeleton borderRadius={cardBorderRadius} key={id} />
           ))}
         {!isLoading &&
-          animes.map((anime) => (
+          animes?.map((anime) => (
             <AnimeCard
               anime={anime}
               borderRadius={cardBorderRadius}

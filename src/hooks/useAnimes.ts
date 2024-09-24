@@ -1,5 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { AnimeQuery } from "../App";
-import { useData } from "./useData";
+import apiClient, { FetchResponse } from "../services/api-client";
 
 export interface Anime {
   id: string;
@@ -18,18 +19,23 @@ export interface Anime {
 }
 
 function useAnime(animeQuery: AnimeQuery) {
-  return useData<Anime>(
-    "/anime",
-    {
-      params: {
-        "filter[categories]": animeQuery?.category,
-        "filter[status]": animeQuery?.status,
-        "filter[text]": animeQuery.searchText,
-        sort: animeQuery?.order,
-      },
-    },
-    [animeQuery]
-  );
+  return useQuery({
+    queryKey: ["animes", animeQuery],
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<Anime>>("/anime", {
+          params: {
+            "filter[categories]": animeQuery?.category,
+            "filter[status]": animeQuery?.status,
+            "filter[text]": animeQuery.searchText,
+            sort: animeQuery?.order,
+          },
+        })
+        .then((response) => response.data.data),
+    gcTime: 5 * 60 * 1000,
+    staleTime: 2 * 60 * 1000, //5minutes
+    refetchOnWindowFocus: false,
+  });
 }
 
 export { useAnime };

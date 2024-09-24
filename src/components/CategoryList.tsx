@@ -42,7 +42,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
           All
         </Button>
       )}
-      {categories.map((cat) => (
+      {categories?.map((cat) => (
         <Button
           onClick={() => onSelectCategory(cat.attributes.slug)}
           colorScheme={

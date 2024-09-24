@@ -1,4 +1,5 @@
-import { useData } from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import apiClient, { FetchResponse } from "../services/api-client";
 
 export interface Category {
   id: string;
@@ -9,26 +10,16 @@ export interface Category {
 }
 
 function useCategories() {
-  const {
-    data: data1,
-    error: error1,
-    isLoading: isLoading1,
-  } = useData<Category>("/categories", {
-    params: { sort: "-totalMediaCount", "page[limit]": 20, "page[offset]": 0 },
+  return useQuery({
+    queryKey: ["category"],
+    queryFn: () =>
+      apiClient
+        .get<FetchResponse<Category>>("/categories", {
+          params: { sort: "-totalMediaCount", "page[limit]": 20 },
+        })
+        .then((response) => response.data.data),
+    staleTime: 24 * 60 * 60 * 1000,
   });
-  const {
-    data: data2,
-    error: error2,
-    isLoading: isLoading2,
-  } = useData<Category>("/categories", {
-    params: { sort: "-totalMediaCount", "page[limit]": 20, "page[offset]": 20 },
-  });
-
-  const data = data1.concat(data2);
-  const error = error1 && error2;
-  const isLoading = isLoading1 && isLoading2;
-
-  return { data, isLoading, error };
 }
 
 export { useCategories };
