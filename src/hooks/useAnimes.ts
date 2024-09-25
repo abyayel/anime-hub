@@ -44,7 +44,7 @@ function useAnime(animeQuery: AnimeQuery) {
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.links.next ? allPages.length + 1 : undefined,
-    staleTime: 5 * 60 * 1000, //5minutes
+    staleTime: 30 * 60 * 1000, //5minutes
     refetchOnWindowFocus: false,
   });
 }

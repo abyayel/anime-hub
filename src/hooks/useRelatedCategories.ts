@@ -13,6 +13,7 @@ function useRelatedCategories(animeId: string) {
       apiClient.getAll({
         params: { sort: "-totalMediaCount" },
       }),
+    staleTime: 24 * 60 * 1000,
   });
 }
 
