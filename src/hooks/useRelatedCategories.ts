@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
 import { Category } from "./useCategories";
+import ms from "ms";
 
 function useRelatedCategories(animeId: string) {
   const apiClient = new APIClient<Category>(
@@ -13,7 +14,7 @@ function useRelatedCategories(animeId: string) {
       apiClient.getAll({
         params: { sort: "-totalMediaCount" },
       }),
-    staleTime: 24 * 60 * 1000,
+    staleTime: ms("24h"),
   });
 }
 

@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
+import ms from "ms";
 
 const apiClient = new APIClient<Anime>("anime");
 
@@ -44,7 +45,7 @@ function useAnime(animeQuery: AnimeQuery) {
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.links.next ? allPages.length + 1 : undefined,
-    staleTime: 30 * 60 * 1000, //5minutes
+    staleTime: ms("5m"),
     refetchOnWindowFocus: false,
   });
 }
