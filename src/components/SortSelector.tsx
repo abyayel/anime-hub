@@ -1,17 +1,13 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import useAnimeQueryStore from "../store";
 
-interface Props {
-  onSelectOrder: (attributeName: string | null) => void;
-  selectedOrder: string | null;
-  selectedCategory: string | null;
-}
-
-function SortSelector({
-  selectedOrder,
-  selectedCategory,
-  onSelectOrder,
-}: Props) {
+function SortSelector() {
+  const selectedOrder = useAnimeQueryStore((store) => store.animeQuery.order);
+  const selectedCategory = useAnimeQueryStore(
+    (store) => store.animeQuery.category
+  );
+  const onSelectOrder = useAnimeQueryStore((store) => store.setOrder);
   const orders = [
     { value: "popularityRank", label: "Most Popular" },
     { value: "-averageRating", label: "Average Rating" },
@@ -24,7 +20,7 @@ function SortSelector({
   return (
     <Menu>
       <MenuButton size={"sm"} as={Button} rightIcon={<BsChevronDown />}>
-        {selectedCategory == null
+        {!selectedCategory
           ? currentOrder?.label || "Order"
           : currentOrder?.label || "Most Popular"}
       </MenuButton>
@@ -38,8 +34,8 @@ function SortSelector({
             {order.label}
           </MenuItem>
         ))}
-        {selectedCategory == null && (
-          <MenuItem value="no order" onClick={() => onSelectOrder(null)}>
+        {!selectedCategory && (
+          <MenuItem value="no order" onClick={() => onSelectOrder()}>
             No order
           </MenuItem>
         )}

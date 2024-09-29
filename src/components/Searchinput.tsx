@@ -1,12 +1,10 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
+import useAnimeQueryStore from "../store";
 
-interface Props {
-  onSearch: (value: string | null) => void;
-}
-
-function Searchinput({ onSearch }: Props) {
+function Searchinput() {
+  const onSearch = useAnimeQueryStore((store) => store.setSearchText);
   const ref = useRef<HTMLInputElement>(null);
 
   return (
@@ -17,7 +15,7 @@ function Searchinput({ onSearch }: Props) {
           onSearch(ref.current.value);
         }
         if (ref.current?.value == "") {
-          onSearch(null);
+          onSearch();
         }
       }}
     >

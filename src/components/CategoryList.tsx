@@ -1,13 +1,13 @@
 import { Button, HStack, Skeleton, useBreakpointValue } from "@chakra-ui/react";
 import { useCategories } from "../hooks/useCategories";
 import React from "react";
+import useAnimeQueryStore from "../store";
 
-interface Props {
-  onSelectCategory: (slug: string | null) => void;
-  selectedCategory: string | null;
-}
-
-function CategoryList({ onSelectCategory, selectedCategory }: Props) {
+function CategoryList() {
+  const selectedCategory = useAnimeQueryStore(
+    (store) => store.animeQuery.category
+  );
+  const onSelectCategory = useAnimeQueryStore((store) => store.setCategory);
   const {
     data: categories,
     isLoading,
@@ -44,7 +44,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
           ))}
         {!isLoading && (
           <Button
-            onClick={() => onSelectCategory(null)}
+            onClick={() => onSelectCategory()}
             colorScheme={selectedCategory ? "purple" : "red"}
             size={{ base: "xs", xl: "sm", "2xl": "md" }}
           >

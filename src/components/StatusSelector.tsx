@@ -1,12 +1,11 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import useAnimeQueryStore from "../store";
 
-interface Props {
-  onSelectStatus: (statusName: string | null) => void;
-  selectedStatus: string | null;
-}
+function Status() {
+  const selectedStatus = useAnimeQueryStore((store) => store.animeQuery.status);
+  const onSelectStatus = useAnimeQueryStore((store) => store.setStatus);
 
-function Status({ selectedStatus, onSelectStatus }: Props) {
   const status = [
     { value: "current", label: "Current" },
     { value: "finished", label: "Finished" },
@@ -34,7 +33,7 @@ function Status({ selectedStatus, onSelectStatus }: Props) {
             {status.label}
           </MenuItem>
         ))}
-        <MenuItem value="no status" onClick={() => onSelectStatus(null)}>
+        <MenuItem value="no status" onClick={() => onSelectStatus()}>
           All
         </MenuItem>
       </MenuList>

@@ -2,22 +2,17 @@ import { Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import { useAnime } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
-import { AnimeQuery } from "../hooks/useAnimes";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface Props {
-  animeQuery: AnimeQuery;
-}
-
-function AnimeGrid({ animeQuery }: Props) {
+function AnimeGrid() {
   const {
     data: animes,
     error,
     isLoading,
     hasNextPage,
     fetchNextPage,
-  } = useAnime(animeQuery);
+  } = useAnime();
   const skeleton = [1, 2, 3, 4, 5, 6];
   const cardBorderRadius = 10;
   const fetchedDataCount = animes?.pages.reduce(

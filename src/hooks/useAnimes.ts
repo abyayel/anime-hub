@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
 import ms from "ms";
+import useAnimeQueryStore from "../store";
 
 const apiClient = new APIClient<Anime>("anime");
 
@@ -20,16 +21,8 @@ export interface Anime {
   };
 }
 
-export interface AnimeQuery {
-  category: string | null;
-  status: string | null;
-  order: string | null;
-  searchText: string | null;
-  limit: number;
-  offset: number;
-}
-
-function useAnime(animeQuery: AnimeQuery) {
+function useAnime() {
+  const animeQuery = useAnimeQueryStore((store) => store.animeQuery);
   return useInfiniteQuery({
     queryKey: [animeQuery],
     queryFn: ({ pageParam = 0 }) =>
@@ -40,6 +33,7 @@ function useAnime(animeQuery: AnimeQuery) {
           "filter[text]": animeQuery.searchText,
           sort: animeQuery?.order,
           "page[offset]": pageParam * 10,
+          // "page[limit]":10
         },
       }),
     initialPageParam: 0,
