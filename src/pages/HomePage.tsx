@@ -1,9 +1,8 @@
 import { Grid, GridItem, Heading, HStack, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import AnimeGrid from "./components/AnimeGrid";
-import CategoryList from "./components/CategoryList";
-import SortSelector from "./components/SortSelector";
-import StatusSelector from "./components/StatusSelector";
+import AnimeGrid from "../components/AnimeGrid";
+import CategoryList from "../components/CategoryList";
+import SortSelector from "../components/SortSelector";
+import StatusSelector from "../components/StatusSelector";
 
 function App() {
   const headingBottomGap = 3;
@@ -11,10 +10,8 @@ function App() {
   return (
     <Grid
       templateAreas={{
-        base: `"nav"
-    "main"`,
-        lg: `"nav nav"
-    "main aside"`,
+        base: `"main"`,
+        lg: `"main aside"`,
       }}
       templateColumns={{
         lg: "auto 245px",
@@ -22,9 +19,6 @@ function App() {
         "2xl": "auto 480px",
       }}
     >
-      <GridItem area="nav" padding={3}>
-        <NavBar></NavBar>
-      </GridItem>
       <GridItem area="main" padding={3}>
         <HStack
           marginBottom={headingBottomGap}
