@@ -9,6 +9,8 @@ export interface Anime {
   id: string;
   attributes: {
     canonicalTitle: string;
+    slug: string;
+    synopsis: string;
     averageRating: string;
     ageRating: string;
     posterImage: {
@@ -21,7 +23,7 @@ export interface Anime {
   };
 }
 
-function useAnime() {
+function useAnimes() {
   const animeQuery = useAnimeQueryStore((store) => store.animeQuery);
   return useInfiniteQuery({
     queryKey: [animeQuery],
@@ -44,4 +46,4 @@ function useAnime() {
   });
 }
 
-export { useAnime };
+export { useAnimes };

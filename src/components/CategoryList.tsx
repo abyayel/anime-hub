@@ -32,7 +32,7 @@ function CategoryList() {
 
   return (
     <>
-      <HStack gap={{ base: 1.5, xl: 2 }} flexWrap={"wrap"}>
+      <HStack paddingTop={2} gap={{ base: 1.5, xl: 2 }} flexWrap={"wrap"}>
         {isLoading &&
           skeleton.map((_, id) => (
             <Skeleton

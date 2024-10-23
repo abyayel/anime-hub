@@ -2,6 +2,7 @@ import { Card, CardBody, CardFooter, Heading, Image } from "@chakra-ui/react";
 import { Anime } from "../hooks/useAnimes";
 import RelatedCategoryList from "./RelatedCategoryList";
 import ExtraInfo from "./ExtraInfo";
+import { Link } from "react-router-dom";
 
 interface Props {
   anime: Anime;
@@ -11,6 +12,10 @@ interface Props {
 function AnimeCard({ anime, borderRadius }: Props) {
   return (
     <Card
+      _hover={{
+        transform: "scale(1.02)",
+        transition: "transform 0.1s ease-in-out",
+      }}
       maxW={{ base: " 317px", md: "352", xl: "303px", "2xl": "507px" }}
       borderRadius={borderRadius}
       overflow="hidden"
@@ -23,7 +28,9 @@ function AnimeCard({ anime, borderRadius }: Props) {
       />
       <CardBody paddingTop={3} key={anime.id}>
         <Heading isTruncated size={{ base: "sm", sm: "md", "2xl": "lg" }}>
-          {anime.attributes.canonicalTitle}
+          <Link to={`anime/${anime.id}/${anime.attributes.slug}`}>
+            {anime.attributes.canonicalTitle}
+          </Link>
         </Heading>
         <RelatedCategoryList animeId={anime.id} />
       </CardBody>

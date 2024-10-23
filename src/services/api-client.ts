@@ -23,6 +23,11 @@ class APIClient<T> {
       .get<FetchResponse<T>>(this.endpoint, config)
       .then((response) => response.data);
   }
+  public get(id: string) {
+    return apiClient
+      .get<{ data: T }>(this.endpoint + "/" + id)
+      .then((response) => response.data);
+  }
 }
 
 export { APIClient };

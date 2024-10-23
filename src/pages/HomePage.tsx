@@ -19,7 +19,7 @@ function App() {
         "2xl": "auto 480px",
       }}
     >
-      <GridItem area="main" padding={3}>
+      <GridItem area="main">
         <HStack
           marginBottom={headingBottomGap}
           justifyContent={"space-between"}
@@ -35,7 +35,7 @@ function App() {
         <AnimeGrid />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingTop={3} paddingRight={3}>
+        <GridItem area="aside" paddingX={3}>
           <Heading marginBottom={headingBottomGap}>Categories</Heading>
           <CategoryList />
         </GridItem>

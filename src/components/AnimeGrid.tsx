@@ -1,5 +1,5 @@
 import { Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
-import { useAnime } from "../hooks/useAnimes";
+import { useAnimes } from "../hooks/useAnimes";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import React from "react";
@@ -12,7 +12,7 @@ function AnimeGrid() {
     isLoading,
     hasNextPage,
     fetchNextPage,
-  } = useAnime();
+  } = useAnimes();
   const skeleton = [1, 2, 3, 4, 5, 6];
   const cardBorderRadius = 10;
   const fetchedDataCount = animes?.pages.reduce(
@@ -42,6 +42,8 @@ function AnimeGrid() {
           columnGap={"3.5"}
           columns={{ base: 1, sm: 2, md: 3, "2xl": 4 }}
           justifyItems={"center"}
+          paddingTop={2}
+          paddingRight={2}
         >
           {isLoading &&
             skeleton.map((id) => (
