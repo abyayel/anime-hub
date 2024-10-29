@@ -7,10 +7,14 @@ const apiClient = axios.create({
   },
 });
 
-interface FetchResponse<T> {
+interface FetchArrayResponse<T> {
   data: T[];
   meta: { count: number };
   links: { next: string | undefined };
+}
+
+interface FetchObjectResponse<T> {
+  data: T;
 }
 
 class APIClient<T> {
@@ -20,12 +24,12 @@ class APIClient<T> {
   }
   public getAll(config: AxiosRequestConfig) {
     return apiClient
-      .get<FetchResponse<T>>(this.endpoint, config)
+      .get<FetchArrayResponse<T>>(this.endpoint, config)
       .then((response) => response.data);
   }
   public get(id: string) {
     return apiClient
-      .get<{ data: T }>(this.endpoint + "/" + id)
+      .get<FetchObjectResponse<T>>(this.endpoint + "/" + id)
       .then((response) => response.data);
   }
 }
