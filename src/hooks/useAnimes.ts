@@ -2,26 +2,9 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
 import ms from "ms";
 import useAnimeQueryStore from "../store";
+import { Anime } from "../entities/Anime";
 
 const apiClient = new APIClient<Anime>("anime");
-
-export interface Anime {
-  id: string;
-  attributes: {
-    canonicalTitle: string;
-    slug: string;
-    synopsis: string;
-    averageRating: string;
-    ageRating: string;
-    posterImage: {
-      tiny: string;
-      small: string;
-      medium: string;
-      large: string;
-      original: string;
-    };
-  };
-}
 
 function useAnimes() {
   const animeQuery = useAnimeQueryStore((store) => store.animeQuery);

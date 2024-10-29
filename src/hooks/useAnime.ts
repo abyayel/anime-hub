@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
-import { Anime } from "./useAnimes";
+import { Anime } from "../entities/Anime";
 const apiClient = new APIClient<Anime>("anime");
 
 const useAnime = (id: string) => {

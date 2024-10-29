@@ -1,5 +1,5 @@
 import { Card, CardBody, CardFooter, Heading, Image } from "@chakra-ui/react";
-import { Anime } from "../hooks/useAnimes";
+import { Anime } from "../entities/Anime";
 import RelatedCategoryList from "./RelatedCategoryList";
 import ExtraInfo from "./ExtraInfo";
 import { Link } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
-import { Category } from "./useCategories";
+import { Category } from "../entities/Category";
 import ms from "ms";
 
 function useRelatedCategories(animeId: string) {

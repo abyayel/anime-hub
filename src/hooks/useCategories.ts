@@ -1,16 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { APIClient } from "../services/api-client";
 import ms from "ms";
+import { Category } from "../entities/Category";
 
 const apiClient = new APIClient<Category>("/categories");
-
-export interface Category {
-  id: string;
-  attributes: {
-    title: string;
-    slug: string;
-  };
-}
 
 function useCategories() {
   return useInfiniteQuery({
