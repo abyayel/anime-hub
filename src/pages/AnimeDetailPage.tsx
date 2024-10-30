@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useAnime } from "../hooks/useAnime";
-import { Heading, Spinner, Text } from "@chakra-ui/react";
+import { Heading, Spinner } from "@chakra-ui/react";
+import ExpandableText from "../components/ExpandabaleText";
 
 function AnimeDetailsPage() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ function AnimeDetailsPage() {
   return (
     <div>
       <Heading>{title}</Heading>
-      <Text>{description}</Text>
+      <ExpandableText>{description}</ExpandableText>
     </div>
   );
 }
