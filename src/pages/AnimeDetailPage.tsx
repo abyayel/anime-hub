@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useAnime } from "../hooks/useAnime";
-import { Grid, GridItem, Heading, Spinner } from "@chakra-ui/react";
+import { Image, Grid, GridItem, Heading, Spinner } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandabaleText";
 
 function AnimeDetailsPage() {
@@ -8,6 +8,7 @@ function AnimeDetailsPage() {
   const { data: anime, isLoading, error } = useAnime(id!);
   const description = anime?.data.attributes.synopsis;
   const title = anime?.data.attributes.canonicalTitle;
+  const posterImg = anime?.data.attributes.posterImage.large;
   if (isLoading) return <Spinner />;
   if (error) throw error;
 
@@ -15,13 +16,22 @@ function AnimeDetailsPage() {
     <div>
       <Grid
         templateAreas={{
-          base: `"poster" "genres" "title" "description" "info" `,
+          base: `"poster"  "title" "genres" "description" "info" `,
           md: `"poster title" "poster genres" "poster description" "poster info"`,
           xl: `"poster title info" "poster genres info" "poster description info"`,
         }}
+        gap={5}
+        justifyItems={{ base: "center", md: "initial" }}
+        paddingBottom={5}
+        // paddingY={10}
       >
-        <GridItem area="poster" backgroundColor="red">
-          Poster
+        <GridItem area="poster">
+          <Image
+            maxW={{ base: "200px", md: "250px" }}
+            border={"solid"}
+            borderRadius={15}
+            src={posterImg}
+          />
         </GridItem>
         <GridItem area="title" backgroundColor="blue">
           <Heading>{title}</Heading>
