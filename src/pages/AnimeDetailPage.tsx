@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useAnime } from "../hooks/useAnime";
 import { Image, Grid, GridItem, Heading, Spinner } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandabaleText";
+import RelatedCategoryList from "../components/RelatedCategoryList";
 import AnimeInfo from "../components/AnimeInfo";
 
 function AnimeDetailsPage() {
@@ -38,8 +39,13 @@ function AnimeDetailsPage() {
         <GridItem area="title" backgroundColor="blue">
           <Heading>{title}</Heading>
         </GridItem>
-        <GridItem area="genres" backgroundColor="lime">
-          Genres
+        <GridItem area="genres" alignSelf={"flex-end"}>
+          <RelatedCategoryList
+            animeId={anime?.data.id!}
+            colorScheme="blue"
+            baseFontSize="x-small"
+            categoryNumber={5}
+          />
         </GridItem>
         <GridItem area="description" backgroundColor="green">
           <ExpandableText>{description}</ExpandableText>

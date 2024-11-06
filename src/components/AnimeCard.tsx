@@ -32,7 +32,13 @@ function AnimeCard({ anime, borderRadius }: Props) {
             {anime.attributes.canonicalTitle}
           </Link>
         </Heading>
-        <RelatedCategoryList animeId={anime.id} />
+        <RelatedCategoryList
+          animeId={anime.id}
+          baseFontSize="10px"
+          LargeFontSize="15px"
+          categoryNumber={3}
+          colorScheme="blue"
+        />
       </CardBody>
       <CardFooter paddingTop={0} paddingBottom={2}>
         <ExtraInfo
