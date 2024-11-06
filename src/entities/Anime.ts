@@ -3,6 +3,7 @@ export interface Anime {
   attributes: {
     canonicalTitle: string;
     slug: string;
+    titles: { en: string; en_jp: string; ja_jp: string };
     synopsis: string;
     startDate: string;
     endDate: string;
