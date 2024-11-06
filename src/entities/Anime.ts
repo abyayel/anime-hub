@@ -4,6 +4,10 @@ export interface Anime {
     canonicalTitle: string;
     slug: string;
     synopsis: string;
+    startDate: string;
+    endDate: string;
+    popularityRank: string;
+    ratingRank: string;
     averageRating: string;
     ageRating: string;
     posterImage: {
@@ -13,5 +17,7 @@ export interface Anime {
       large: string;
       original: string;
     };
+    status: "finished" | "current" | "tba" | "unreleased" | "upcoming";
+    showType: "ONA" | "OVA" | "TV" | "movie" | "music" | "special";
   };
 }

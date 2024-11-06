@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useAnime } from "../hooks/useAnime";
 import { Image, Grid, GridItem, Heading, Spinner } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandabaleText";
+import AnimeInfo from "../components/AnimeInfo";
 
 function AnimeDetailsPage() {
   const { id } = useParams();
@@ -20,6 +21,7 @@ function AnimeDetailsPage() {
           md: `"poster title" "poster genres" "poster description" "poster info"`,
           xl: `"poster title info" "poster genres info" "poster description info"`,
         }}
+        templateColumns={{ xl: "auto auto 30%" }}
         gap={5}
         justifyItems={{ base: "center", md: "initial" }}
         paddingBottom={5}
@@ -42,8 +44,8 @@ function AnimeDetailsPage() {
         <GridItem area="description" backgroundColor="green">
           <ExpandableText>{description}</ExpandableText>
         </GridItem>
-        <GridItem area="info" backgroundColor="purple">
-          Info
+        <GridItem area="info" justifySelf={"flex-start"}>
+          <AnimeInfo anime={anime?.data!} />
         </GridItem>
       </Grid>
 
