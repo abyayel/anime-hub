@@ -13,44 +13,44 @@ function AnimeInfo({ anime }: Props) {
   const showType = anime.attributes.showType;
   return (
     <>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Show type:{" "}
         </Text>
         <Text as="span">{capitilize(showType)}</Text>
       </Text>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Status:{" "}
         </Text>
         <Text as="span">{capitilize(status)}</Text>
       </Text>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Run time:{" "}
         </Text>
         <Text as="span">{anime.attributes.startDate} to </Text>
         <Text as="span">{anime.attributes.endDate || "?"}</Text>
       </Text>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Rating:{" "}
         </Text>
         <Text as="span">{anime.attributes.averageRating}</Text>
       </Text>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Popularity Rank:{" "}
         </Text>
         <Text as="span">{anime.attributes.popularityRank}</Text>
       </Text>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Rating Rank:{" "}
         </Text>
         <Text as="span">{anime.attributes.ratingRank}</Text>
       </Text>
-      <Text>
+      <Text fontSize={"sm"}>
         <Text as="span" fontWeight="bold">
           Age Rating:{" "}
         </Text>
