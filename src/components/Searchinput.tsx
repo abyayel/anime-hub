@@ -7,10 +7,12 @@ import {
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import useAnimeQueryStore from "../store";
+import { useNavigate } from "react-router-dom";
 
 function Searchinput() {
   const onSearch = useAnimeQueryStore((store) => store.setSearchText);
   const ref = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   return (
     <form
@@ -22,6 +24,7 @@ function Searchinput() {
         if (ref.current?.value == "") {
           onSearch();
         }
+        navigate("/");
       }}
     >
       <LightMode>

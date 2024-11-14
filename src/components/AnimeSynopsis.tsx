@@ -22,7 +22,7 @@ const AnimeSynopsis = ({ children, title }: Props) => {
   const limit = 300;
   if (!children) return null;
 
-  if (children.length <= limit) return <Text>{children}</Text>;
+  if (children.length <= limit) return <Text fontSize={"sm"}>{children}</Text>;
 
   const updatedText = children.substring(0, limit) + "...";
   const { isOpen, onOpen, onClose } = useDisclosure();
