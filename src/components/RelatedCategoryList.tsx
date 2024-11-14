@@ -1,4 +1,4 @@
-import { Badge, HStack } from "@chakra-ui/react";
+import { Badge, HStack, useColorModeValue } from "@chakra-ui/react";
 import { useRelatedCategories } from "../hooks/useRelatedCategories";
 
 interface Props {
@@ -6,7 +6,11 @@ interface Props {
   baseFontSize?: string;
   LargeFontSize?: string;
   categoryNumber: number;
-  colorScheme: string;
+  color?: string;
+  colorScheme?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  darkModeColor?: string;
 }
 
 function RelatedCategoryList({
@@ -15,7 +19,13 @@ function RelatedCategoryList({
   LargeFontSize,
   categoryNumber,
   colorScheme,
+  backgroundColor,
+  textColor,
 }: Props) {
+  let bg = undefined;
+  if (colorScheme) {
+    bg = null;
+  } else bg = useColorModeValue(backgroundColor, "gray.700");
   const { data: categoryList } = useRelatedCategories(animeId);
   const limitedData = categoryList?.data.slice(0, categoryNumber);
 
@@ -23,7 +33,10 @@ function RelatedCategoryList({
     <HStack wrap={"wrap"} paddingTop={1}>
       {limitedData?.map((category) => (
         <Badge
+          //
+          backgroundColor={bg!}
           colorScheme={colorScheme}
+          textColor={textColor}
           key={category.id}
           fontSize={{ base: baseFontSize, "2xl": LargeFontSize }}
           padding={1.5}

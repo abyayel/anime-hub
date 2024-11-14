@@ -10,7 +10,7 @@ function ColorModeSwitch() {
         isChecked={colorMode === "dark"}
         onChange={toggleColorMode}
       ></Switch>
-      <Text whiteSpace={"nowrap"} fontWeight={"bold"}>
+      <Text whiteSpace={"nowrap"} fontWeight={"bold"} textColor={"white"}>
         {colorMode === "dark" ? "Light" : "Dark"} Mode
       </Text>
     </HStack>

@@ -5,7 +5,7 @@ import Searchinput from "./Searchinput";
 
 function NavBar() {
   return (
-    <HStack>
+    <HStack paddingX={5} paddingY={3} backgroundColor="blue.500">
       <Image boxSize="60px" src={logo}></Image>
       <Searchinput></Searchinput>
       <ColorModeSwitch />

@@ -7,12 +7,15 @@ import {
   Heading,
   Spinner,
   VStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import ExpandableText from "../components/ExpandabaleText";
+import AnimeSynopsis from "../components/AnimeSynopsis";
 import RelatedCategoryList from "../components/RelatedCategoryList";
 import AnimeInfo from "../components/AnimeInfo";
 
 function AnimeDetailsPage() {
+  const bg = useColorModeValue("blue.700", "gray.800");
+
   const { id } = useParams();
   const { data: anime, isLoading, error } = useAnime(id!);
   const description = anime?.data.attributes.synopsis;
@@ -22,8 +25,12 @@ function AnimeDetailsPage() {
   if (error) throw error;
 
   return (
-    <div>
+    <>
       <Grid
+        color={"white"}
+        margin={"0px"}
+        padding={5}
+        backgroundColor={bg}
         paddingTop={"20px"}
         templateAreas={{
           base: `"poster"  "title" "genres" "description" "info" `,
@@ -59,13 +66,15 @@ function AnimeDetailsPage() {
         <GridItem area="genres" alignSelf={"flex-end"}>
           <RelatedCategoryList
             animeId={anime?.data.id!}
-            colorScheme="blue"
+            // colorScheme="blue"
+            backgroundColor="blue.600"
+            textColor="white"
             baseFontSize="x-small"
             categoryNumber={5}
           />
         </GridItem>
-        <GridItem area="description" height={"100px"}>
-          <ExpandableText>{description}</ExpandableText>
+        <GridItem area="description">
+          <AnimeSynopsis title={title}>{description}</AnimeSynopsis>
         </GridItem>
         <GridItem area="info" justifySelf={"flex-start"}>
           <AnimeInfo anime={anime?.data!} />
@@ -85,7 +94,7 @@ function AnimeDetailsPage() {
           Episode details
         </GridItem>
       </Grid>
-    </div>
+    </>
   );
 }
 

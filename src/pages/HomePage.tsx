@@ -9,6 +9,7 @@ function App() {
 
   return (
     <Grid
+      padding={5}
       templateAreas={{
         base: `"main"`,
         lg: `"main aside"`,

@@ -1,4 +1,9 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import {
+  LightMode,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import useAnimeQueryStore from "../store";
@@ -19,15 +24,19 @@ function Searchinput() {
         }
       }}
     >
-      <InputGroup>
-        <InputLeftElement children={<BsSearch />} />
-        <Input
-          ref={ref}
-          borderRadius={"20px"}
-          placeholder="Search Anime"
-          variant="filled"
-        ></Input>
-      </InputGroup>
+      <LightMode>
+        <InputGroup>
+          <InputLeftElement textColor={"black"} children={<BsSearch />} />
+          <Input
+            ref={ref}
+            borderRadius={"20px"}
+            placeholder="Search Anime"
+            variant="filled"
+            textColor={"black"}
+            _focusVisible={"white"}
+          ></Input>
+        </InputGroup>
+      </LightMode>
     </form>
   );
 }
