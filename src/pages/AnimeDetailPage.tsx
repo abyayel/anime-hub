@@ -12,10 +12,11 @@ import {
 import AnimeSynopsis from "../components/AnimeSynopsis";
 import RelatedCategoryList from "../components/RelatedCategoryList";
 import AnimeInfo from "../components/AnimeInfo";
+import EpisodeList from "../components/EpisodeList";
 
 function AnimeDetailsPage() {
   const bg = useColorModeValue("blue.700", "gray.800");
-
+  const bg2 = useColorModeValue("white", "gray.900");
   const { id } = useParams();
   const { data: anime, isLoading, error } = useAnime(id!);
   const description = anime?.data.attributes.synopsis;
@@ -86,9 +87,14 @@ function AnimeDetailsPage() {
           base: `"episodes" "details"`,
           md: `"episodes details"`,
         }}
+        paddingY={"8"}
+        paddingX={"5"}
+        gap={5}
+        backgroundColor={bg2}
+        //         backgroundColor={"grey"}
       >
-        <GridItem area="episodes" backgroundColor="orange">
-          Episodes
+        <GridItem area="episodes">
+          <EpisodeList animeId={id!}></EpisodeList>
         </GridItem>
         <GridItem area="details" backgroundColor="gold">
           Episode details
