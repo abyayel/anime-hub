@@ -9,7 +9,7 @@ function useRelatedCategories(animeId: string) {
   );
 
   return useQuery({
-    queryKey: [animeId],
+    queryKey: ["relatedcategories",animeId],
     queryFn: () =>
       apiClient.getAll({
         params: { sort: "-totalMediaCount" },
