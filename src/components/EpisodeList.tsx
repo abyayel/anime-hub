@@ -8,12 +8,15 @@ import {
 import { useRelatedEpisodes } from "../hooks/useRelatedEpisodes";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Episode } from "../entities/Episode";
 
 interface Props {
   animeId: string;
+  currentEpisodeNumber: string | undefined;
+  onClick: (episode: Episode) => void;
 }
 
-function EpisodeList({ animeId }: Props) {
+function EpisodeList({ currentEpisodeNumber, animeId, onClick }: Props) {
   const {
     data: episodes,
     isLoading,
@@ -25,6 +28,7 @@ function EpisodeList({ animeId }: Props) {
   const episodeTextBg = useColorModeValue("gray.100", "gray.700");
   const hoverTextColor = useColorModeValue("blue.500", "blue.200");
   const hoverTextBg = useColorModeValue("white", "gray.700");
+  const textColor = useColorModeValue("black", "white");
   const fetchedDataCount = episodes?.pages.reduce(
     (acc, page) => acc + page.data.length,
     0
@@ -52,24 +56,46 @@ function EpisodeList({ animeId }: Props) {
           Episodes
         </Heading>
       </Box>
-      <InfiniteScroll
-        dataLength={fetchedDataCount || 0}
-        hasMore={hasNextPage}
-        next={() => fetchNextPage()}
-        loader={<Spinner />}
+
+      <Box
+        maxHeight={{ base: "300px", md: "400px", lg: "450px" }}
+        overflowY={"scroll"}
       >
-        {/* InfiniteScroll allows us to get rid of overflow attributes */}
-        <Box maxHeight={"500px"} display={"grid"} gap={"0.5"}>
+        <InfiniteScroll
+          dataLength={fetchedDataCount || 0}
+          hasMore={hasNextPage}
+          next={() => fetchNextPage()}
+          loader={<Spinner />}
+        >
           {episodes?.pages.map((page, pageIndex) => (
-            <Box key={pageIndex} display={"grid"} gap={"0.5"}>
+            <Box
+              key={pageIndex}
+              display={"grid"}
+              gap={"0.5"}
+              marginBottom={"0.5"} //since infite scroll is one object making the parent box grid will not divide the epsode boxes
+            >
               {page.data.map((episode) => (
                 <Box
+                  onClick={() => onClick(episode)}
                   borderLeft={"solid"}
-                  borderLeftColor={episodeTextBg}
+                  borderLeftColor={
+                    episode.attributes.number === currentEpisodeNumber
+                      ? hoverTextColor
+                      : episodeTextBg
+                  }
+                  color={
+                    episode.attributes.number === currentEpisodeNumber
+                      ? hoverTextColor
+                      : textColor
+                  }
                   key={episode.id}
                   display={"flex"}
                   justifyContent={"space-between"}
-                  backgroundColor={episodeTextBg}
+                  backgroundColor={
+                    episode.attributes.number === currentEpisodeNumber
+                      ? hoverTextBg
+                      : episodeTextBg
+                  }
                   padding={"3"}
                   cursor={"pointer"}
                   _hover={{
@@ -80,16 +106,21 @@ function EpisodeList({ animeId }: Props) {
                   }}
                 >
                   <Text fontWeight={"500"}>
-                    Episode {episode.attributes.number}:{" "}
+                    Episode {episode.attributes.number}
+                    {(episode.attributes.canonicalTitle ||
+                      episode.attributes.titles.en_jp ||
+                      episode.attributes.titles.en_us) &&
+                      " : "}
                     {episode.attributes.canonicalTitle ||
-                      episode.attributes.titles.en_jp}
+                      episode.attributes.titles.en_jp ||
+                      episode.attributes.titles.en_us}
                   </Text>
                 </Box>
               ))}
             </Box>
           ))}
-        </Box>
-      </InfiniteScroll>
+        </InfiniteScroll>
+      </Box>
     </Box>
   );
 }

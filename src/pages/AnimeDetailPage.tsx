@@ -13,8 +13,13 @@ import AnimeSynopsis from "../components/AnimeSynopsis";
 import RelatedCategoryList from "../components/RelatedCategoryList";
 import AnimeInfo from "../components/AnimeInfo";
 import EpisodeList from "../components/EpisodeList";
+import EpisodeDetails from "../components/EpisodeDetails";
+import { useState } from "react";
+import { Episode } from "../entities/Episode";
 
 function AnimeDetailsPage() {
+  const [currentEpisode, setCurrentEpisode] = useState<Episode | null>(null);
+  // console.log(currentEpisode);
   const bg = useColorModeValue("blue.700", "gray.800");
   const bg2 = useColorModeValue("white", "gray.900");
   const { id } = useParams();
@@ -43,7 +48,6 @@ function AnimeDetailsPage() {
         columnGap={10}
         justifyItems={{ base: "center", md: "initial" }}
         paddingBottom={5}
-        // paddingY={10}
       >
         <GridItem area="poster">
           <Image
@@ -84,20 +88,24 @@ function AnimeDetailsPage() {
 
       <Grid
         templateAreas={{
-          base: `"episodes" "details"`,
+          base: `"details" "episodes"`,
           md: `"episodes details"`,
         }}
+        templateColumns={{ md: "40% 60%", base: "100%" }}
         paddingY={"8"}
         paddingX={"5"}
         gap={5}
         backgroundColor={bg2}
-        //         backgroundColor={"grey"}
       >
         <GridItem area="episodes">
-          <EpisodeList animeId={id!}></EpisodeList>
+          <EpisodeList
+            animeId={id!}
+            currentEpisodeNumber={currentEpisode?.attributes.number}
+            onClick={(episode) => setCurrentEpisode(episode)}
+          ></EpisodeList>
         </GridItem>
-        <GridItem area="details" backgroundColor="gold">
-          Episode details
+        <GridItem area="details">
+          <EpisodeDetails episodeData={currentEpisode}></EpisodeDetails>
         </GridItem>
       </Grid>
     </>
