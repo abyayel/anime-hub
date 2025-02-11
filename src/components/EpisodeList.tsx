@@ -58,7 +58,7 @@ function EpisodeList({ currentEpisodeNumber, animeId, onClick }: Props) {
       </Box>
 
       <Box
-        maxHeight={{ base: "300px", md: "400px", lg: "450px" }}
+        maxHeight={{ base: "230px", md: "400px", lg: "450px" }}
         overflowY={"scroll"}
       >
         <InfiniteScroll

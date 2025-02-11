@@ -20,13 +20,16 @@ import { Episode } from "../entities/Episode";
 function AnimeDetailsPage() {
   const [currentEpisode, setCurrentEpisode] = useState<Episode | null>(null);
   // console.log(currentEpisode);
-  const bg = useColorModeValue("blue.700", "gray.800");
-  const bg2 = useColorModeValue("white", "gray.900");
+  const animeDetailBgColor = useColorModeValue("blue.700", "gray.800");
+  const episodeDetailBgColor = useColorModeValue("white", "gray.900");
   const { id } = useParams();
   const { data: anime, isLoading, error } = useAnime(id!);
   const description = anime?.data.attributes.synopsis;
-  const title = anime?.data.attributes.canonicalTitle;
+  const canonicalTitle = anime?.data.attributes.canonicalTitle;
+  const japaneseTitle = anime?.data.attributes.titles.ja_jp;
   const posterImg = anime?.data.attributes.posterImage.large;
+  const showType = anime?.data.attributes.showType;
+
   if (isLoading) return <Spinner />;
   if (error) throw error;
 
@@ -34,9 +37,8 @@ function AnimeDetailsPage() {
     <>
       <Grid
         color={"white"}
-        margin={"0px"}
         padding={5}
-        backgroundColor={bg}
+        backgroundColor={animeDetailBgColor}
         paddingTop={"20px"}
         templateAreas={{
           base: `"poster"  "title" "genres" "description" "info" `,
@@ -59,19 +61,18 @@ function AnimeDetailsPage() {
         </GridItem>
         <GridItem area="title">
           <VStack gap={"2"} alignItems={"flex-start"}>
-            <Heading size={{ base: "md", md: "lg" }}>{title}</Heading>
+            <Heading size={{ base: "md", md: "lg" }}>{canonicalTitle}</Heading>
             <Heading
               size={{ base: "xsm", md: "sm" }}
               alignSelf={{ base: "center", md: "inherit" }}
             >
-              {anime?.data.attributes.titles.ja_jp}
+              {japaneseTitle}
             </Heading>
           </VStack>
         </GridItem>
         <GridItem area="genres" alignSelf={"flex-end"}>
           <RelatedCategoryList
             animeId={anime?.data.id!}
-            // colorScheme="blue"
             backgroundColor="blue.600"
             textColor="white"
             baseFontSize="x-small"
@@ -79,35 +80,37 @@ function AnimeDetailsPage() {
           />
         </GridItem>
         <GridItem area="description">
-          <AnimeSynopsis title={title}>{description}</AnimeSynopsis>
+          <AnimeSynopsis title={canonicalTitle}>{description}</AnimeSynopsis>
         </GridItem>
         <GridItem area="info" justifySelf={"flex-start"}>
           <AnimeInfo anime={anime?.data!} />
         </GridItem>
       </Grid>
 
-      <Grid
-        templateAreas={{
-          base: `"details" "episodes"`,
-          md: `"episodes details"`,
-        }}
-        templateColumns={{ md: "40% 60%", base: "100%" }}
-        paddingY={"8"}
-        paddingX={"5"}
-        gap={5}
-        backgroundColor={bg2}
-      >
-        <GridItem area="episodes">
-          <EpisodeList
-            animeId={id!}
-            currentEpisodeNumber={currentEpisode?.attributes.number}
-            onClick={(episode) => setCurrentEpisode(episode)}
-          ></EpisodeList>
-        </GridItem>
-        <GridItem area="details">
-          <EpisodeDetails episodeData={currentEpisode}></EpisodeDetails>
-        </GridItem>
-      </Grid>
+      {!(showType === "movie") && (
+        <Grid
+          templateAreas={{
+            base: `"details" "episodes"`,
+            md: `"episodes details"`,
+          }}
+          templateColumns={{ md: "40% 60%", base: "100%" }}
+          paddingY={"8"}
+          paddingX={"5"}
+          gap={5}
+          backgroundColor={episodeDetailBgColor}
+        >
+          <GridItem area="episodes">
+            <EpisodeList
+              animeId={id!}
+              currentEpisodeNumber={currentEpisode?.attributes.number}
+              onClick={(episode) => setCurrentEpisode(episode)}
+            ></EpisodeList>
+          </GridItem>
+          <GridItem area="details">
+            <EpisodeDetails episodeData={currentEpisode}></EpisodeDetails>
+          </GridItem>
+        </Grid>
+      )}
     </>
   );
 }
